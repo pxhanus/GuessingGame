@@ -13,11 +13,23 @@ Public Class Form1
         Dim guess As Integer
 
         guess = Val(Me.txtPlayerGuess.Text)
-        If guess = secretNumber Then        'Correct
-            MessageBox.Show("You guessed it!")
-        ElseIf guess < secretNumber Then    'Too low
+        If guess < MIN Or guess > MAX Then      'invalid guess
+            MessageBox.Show("Guess out of range.")
+        ElseIf guess = secretNumber Then        'Correct
+            Me.lblMessage.Text = "You guessed it!"
+            'MessageBox.Show(count)
+        Else                                    'too low or too high
+            Call GiveHint(secretNumber, guess)
+        End If
+    End Sub
+    'Determine if firstNum is larger than secondNum and then displays an appropriate message.
+    '
+    'post: A message has been displayed in a message box.
+    '
+    Sub GiveHint(ByVal firstNum As Integer, ByVal secondNum As Integer)
+        If firstNum > secondNum Then
             MessageBox.Show("Too low.")
-        ElseIf guess > secretNumber Then    'Too high
+        Else
             MessageBox.Show("Too high.")
         End If
     End Sub
