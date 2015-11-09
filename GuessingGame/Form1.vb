@@ -19,18 +19,18 @@ Public Class Form1
             Me.lblMessage.Text = "You guessed it!"
             'MessageBox.Show(count)
         Else                                    'too low or too high
-            Call GiveHint(secretNumber, guess)
+            Call GiveHint(secretNumber, guess, Me.lblMessage) 'Add label name here
         End If
     End Sub
     'Determine if firstNum is larger than secondNum and then displays an appropriate message.
     '
     'post: A message has been displayed in a message box.
     '
-    Sub GiveHint(ByVal firstNum As Integer, ByVal secondNum As Integer)
+    Sub GiveHint(ByVal firstNum As Integer, ByVal secondNum As Integer, ByRef lblLabel As Label)
         If firstNum > secondNum Then
-            MessageBox.Show("Too low.")
+            lblLabel.Text = "Too low."
         Else
-            MessageBox.Show("Too high.")
+            lblLabel.Text = "Too high."
         End If
     End Sub
 End Class
